@@ -6,7 +6,34 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
-}
+    const result = [];
+    transactions.forEach((transaction) => {
+      const { category, price } = transaction;
+  
+      const existingCategory = result.find((obj) => obj.category === category);
+  
+      if (existingCategory) {
+        existingCategory.totalSpent += price;
+      } else {
+        result.push({ category, totalSpent: price });
+      }
+    });
+  
+    return result;
+  }
+  
+  module.exports = calculateTotalSpentByCategory;
 
-module.exports = calculateTotalSpentByCategory;
+//   all test cases passed 
+
+/* 
+    PASS  tests/anagram.test.js
+    PASS  tests/expenditure-analysis.test.js
+
+    Test Suites: 2 passed, 2 total
+    Tests:       9 passed, 9 total
+    Snapshots:   0 total
+    Time:        2.138 s
+    Ran all test suites.
+    PS C:\WebDev\100x cohort\assignments\01-js> 
+*/
